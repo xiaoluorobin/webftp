@@ -19,7 +19,7 @@ int main(int argc, char **argv) {
 	char **p;
 	int c;
 	while (1){
-		c=0;//
+		c=0;//test
 		gets(str);
 		printf("%s\n",str);
 		if ((host=gethostbyname(str))==NULL){
