@@ -1,38 +1,82 @@
-//============================================================================
-// Name        : studynetwork.cpp
-// Author      : robinluo
-// Version     :
-// Copyright   : robin's study coding
-// Description : Hello World in C++, Ansi-style
-//============================================================================
+#include "socketstudy.h"
 
-#include<stdio.h>
-#include<stdlib.h>
-#include<netdb.h>
-#include<arpa/inet.h>
+int main()
+{
+	socketstudy study;
+	study.start(8080);
+//    int socketfd;
+//    socketfd = socket(AF_INET, SOCK_STREAM, 0);
+//
+//    if(socketfd == -1)
+//    {
+//        showError(errno);
+//        exit(1);
+//    }
+//    else
+//    {
+//        printf("socket create successfully ");
+//    }
+//
+//    struct sockaddr_in sa;
+//    bzero(&sa, sizeof(sa));
+//    sa.sin_family = AF_INET;
+//    sa.sin_port = htons(EHCO_PORT);//host to n short
+//    sa.sin_addr.s_addr = htons(INADDR_ANY);
+//    bzero(&(sa.sin_zero), 8);
+//
+//    if(bind(socketfd, (struct sockaddr *)&sa, sizeof(sa))!= 0)
+//    {
+//        printf("bind failed ");
+//        showError(errno);
+//        exit(1);
+//    }
+//    else
+//    {
+//        printf("bind successfully ");
+//    }
+//
+//    //listen
+//    if(listen(socketfd ,MAX_CLIENT_NUM) != 0)
+//    {
+//        printf("listen error ");
+//        exit(1);
+//    }
+//    else
+//    {
+//        printf("listen successfully ");
+//    }
+//
+//    int clientfd;
+//    struct sockaddr_in clientAdd;
+//    char buff[101]={0};
+//    socklen_t len = sizeof(clientAdd);
+//    int closing =0;
+//    while( closing == 0  && (clientfd = accept(socketfd, (struct sockaddr *)&clientAdd, &len)) >0 )
+//    {
+//        int n;
+//        while((n = recv(clientfd,buff, 100,0 )) > 0)
+//        {
+//            printf("number of receive bytes = %d ", n);
+//            write(STDOUT_FILENO, buff, n);
+//            send(clientfd, buff, n, 0);
+//
+//            if(strcmp(buff, "quit\r\n\n") == 0)
+//            {
+//                break;
+//            }
+//            else if(strcmp(buff, "close\r\n\n") == 0)
+//            {
+//                //server closing
+//                closing = 1;
+//                printf("server is closing ");
+//                break;
+//            }
+//        }
+//
+//        close(clientfd);
+//    }
+//
+//    close(socketfd);
 
-
-int main(int argc, char **argv) {
-	struct hostent *host;
-	char str[100];
-	char addr[INET_ADDRSTRLEN];
-	char **p;
-	int c;
-	while (1){
-		c=0;//test
-		gets(str);
-		printf("%s\n",str);
-		if ((host=gethostbyname(str))==NULL){
-			perror("host");
-		break;
-		}
-		p=host->h_addr_list;  //Get the first IP from the List
-
-		for (;*p!=NULL;p++){
-			c++;
-			inet_ntop(AF_INET, *p, addr, INET_ADDRSTRLEN);
-			printf("%d:%s\n", c, addr);
-		}
-	}
-	return 0;
+    return 0;
 }
