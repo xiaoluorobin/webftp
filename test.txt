@@ -9,3 +9,48 @@
 那么本文标题的语句执行过程为：
 1>/dev/null ：首先表示标准输出重定向到空设备文件，也就是不输出任何信息到终端，说白了就是不显示任何信息。
 2>&1 ：接着，将标准错误输出重定向 到 标准输出，因为之前标准输出已经重定向到了空设备文件，所以标准错误输出也重定向到空设备文件。
+
+
+ps -lA|more|egrep '(UID|study)'
+-A ：所有的 process 均显示出来，与 -e 具有同样的效用；
+-a ：不与 terminal 有关的所有 process ；
+-u ：有效使用者 (effective user) 相关的 process ；
+x ：通常与 a 这个参数一起使用，可列出较完整信息。
+输出格式规划：
+l ：较长、较详细的将该 PID 的的信息列出；
+j ：工作的格式 (jobs format)
+-f ：做一个更为完整的输出。
+
+# F 代表这个程序的旗标 (flag)， 4 代表使用者为 super user；
+# S 代表这个程序的状态 (STAT)，关于各 STAT 的意义将在内文介绍；
+# C CPU 使用的资源百分比
+# PRI 这个是 Priority (优先执行序) 的缩写；
+# NI 这个是 Nice 值
+# ADDR 这个是 kernel function，指出该程序在内存的那个部分。如果是个 running
+# 的程序，一般就是-
+# SZ 使用掉的内存大小；
+# WCHAN 目前这个程序是否正在运作当中，若为 - 表示正在运作；
+# TTY 登入者的终端机位置；
+# TIME 使用掉的 CPU 时间。
+
+ps aux|more|egrep '(USER|study)'
+• USER：该 process 属于那个使用者账号的？
+• PID ：该 process 的号码。
+• %CPU：该 process 使用掉的 CPU 资源百分比；
+• %MEM：该 process 所占用的物理内存百分比；
+• VSZ ：该 process 使用掉的虚拟内存量 (Kbytes)
+• RSS ：该 process 占用的固定的内存量 (Kbytes)
+• TTY ：该 process 是在那个终端机上面运作，若与终端机无关，则显示 ?，另外， tty1-tty6 是本机上面的登入者程序，若为 pts/0 等等的，则表示为由网络连接进主机的程序。
+• STAT：该程序目前的状态，主要的状态有：
+o R ：该程序目前正在运作，或者是可被运作；
+o S ：该程序目前正在睡眠当中 (可说是 idle 状态啦！)，但可被某些讯号 (signal) 唤醒。
+o T ：该程序目前正在侦测或者是停止了；
+o Z ：该程序应该已经终止，但是其父程序却无法正常的终止他，造成 zombie (疆尸) 程序的状态
+• START：该 process 被触发启动的时间；
+• TIME ：该 process 实际使用 CPU 运作的时间。
+
+
+ps axjf|more|egrep -C5 '(PPID|study)'
+列出树形结构
+PID为进程自身的ID，PGID为进程所在的进程组的ID， PPID为进程的父进程ID
+
