@@ -13,6 +13,7 @@
 #include<stdlib.h>
 #include<netdb.h>
 #include<unistd.h>
+#include<sys/stat.h>
 
 socketstudy::socketstudy() {
 	// TODO Auto-generated constructor stub
@@ -75,3 +76,41 @@ void socketstudy::handlerequest(int fdserver){
 
 	}
 }
+void socketstudy::startdaemon(){
+	int pid=fork();
+	if(pid<0){
+		exit(1);
+	}
+	if(pid >0){
+		printf("parent exit. child is:%d",pid);
+		exit(0);
+	}
+	if(pid == 0){
+		printf("child pid=%d,ppid=%d\r\n",getpid(),getppid());
+		//child
+		int sid =setsid();
+		if(sid <0){
+			exit(1);
+		}
+		if(sid > 0){
+			int pid2=fork();
+			if(pid2<0){
+				exit(1);
+			}
+			if(pid2 >0){
+				exit(0);//first child exist
+			}
+			int ret = chdir("/");
+			if(ret !=0){
+				exit(0);
+			}
+			umask(0);//重设文件创建掩码，防止父进程修改影响
+			for(int i = 0; i < 3; i++){
+				close(i);//标准输入 标准输出 标准出错
+		    }
+		}
+
+		start(8080);//second chid belongs to init process
+	}
+}
+
