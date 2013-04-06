@@ -15,6 +15,7 @@ public:
 	void showerror(int errornumber);
 	void bindfd(int fd,int portnum);
 	void handlerequest(int fdserver);
+	void startdaemon();
 	virtual ~socketstudy();
 };
 
