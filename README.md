@@ -8,3 +8,8 @@ http://zhidao.baidu.com/question/344150575
 http://www.ruanyifeng.com/blog/2012/08/blogging_with_jekyll.html
 
 http://deerchao.net/tutorials/regex/regex.htm
+
+sig mask
+http://www.cnblogs.com/qq78292959/archive/2012/04/05/2432985.html
+sig unblock
+http://blog.chinaunix.net/uid-442138-id-2122435.html
