@@ -1,3 +1,4 @@
+sdfdf
 ：“nohup>/dev/null 2>&1”  拆为四部分来分析下:
 ssss
 1：首先 0> 表示stdin标准输入; 1> 表示stdout标准输出; 2> 表示stderr错误输出;
