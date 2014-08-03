@@ -16,3 +16,5 @@ http://blog.chinaunix.net/uid-442138-id-2122435.html
 
 dubbo
 http://code.alibabatech.com/wiki/display/dubbo/Home-zh
+
+刚才获取的文件突然没有了
